@@ -3,22 +3,36 @@ function getRandomHexColor() {
     .toString(16)
     .padStart(6, 0)}`;
 }
-// entrar a las carrear de google "profesionales"
 const inputCreate = document.querySelector([`input`]);
-const buttonCreate = document.querySelector(
-  'button[data-create]'
-);
-const div = document.querySelector(`#boxes`)
-const buttonDestroy = document.querySelector([`data-destroy`]);
-buttonCreate.addEventListener('click', () => {
-  
+const buttonCreate = document.querySelector('button[data-create]');
+const div = document.getElementById(`controls`);
+const buttonDestroy = document.querySelector([`button[data-destroy]`]);
+let allBoxs = document.querySelectorAll('#boxes');
+let countWidth = 0;
+buttonCreate.addEventListener('click', function () {
+  createBoxes(inputCreate.value);
+  allBoxs = document.querySelectorAll('#boxes');
 });
-function createBoxes(amount){
-  const divInsert = document.createElement(`div`)
-  divInsert.id = "boxes"
-  console.log(divInsert); 
-  for (let i = 0; i < amount; i += 1){
-    div.after( divInsert);
+
+buttonDestroy.addEventListener('click', function () {
+  destroyBoxes(allBoxs.length);
+  allBoxs = document.querySelectorAll('#boxes');
+});
+function createBoxes(amount) {
+  let count = allBoxs.length;
+  for (let i = 0; i < amount; i += 1) {
+    const divInsert = document.createElement(`div`);
+    divInsert.id = 'boxes';
+    divInsert.style.backgroundColor = getRandomHexColor();
+    div.after(divInsert);
+    count += 1;
+    let dimesionsDiv = count * 10 + 20;
+    divInsert.style.width = dimesionsDiv + 'px';
+    divInsert.style.height = dimesionsDiv + 'px';
   }
 }
-createBoxes(5)
+function destroyBoxes(amount) {
+  for (let i = 0; i < amount; i += 1) {
+    allBoxs[i].remove()
+  }
+}
