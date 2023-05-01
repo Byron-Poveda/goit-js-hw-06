@@ -6,11 +6,10 @@ const ingredients = [
   'Herbs',
   'Condiments',
 ];
-
 const list = document.getElementById("ingredients");
-for (let i = 0; i < ingredients.length; i += 1){
+ingredients.map(element =>{
   const li = document.createElement('li');
   li.classList.add("item")
-  li.textContent = ingredients[i]
+  li.textContent = element
   list.append(li)
-}
+});
