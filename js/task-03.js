@@ -13,7 +13,6 @@ const images = [
   },
 ];
 const list = document.querySelector('.gallery');
-const array = [];
 images.map((element) => {
   const li = `
     <li>
